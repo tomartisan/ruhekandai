@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ruhekandai - Talking with yourself</title>
+    <meta name="description" content="A fun way to chatting with, between you and AI." />
+    <meta name="keywords" content="ruhekandai, chatting, fun, challenge" />
+    <meta name="author" content="ruhekandai.com" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="error-container">
+      <div class="error-message">
+        <h1>🚧 Under Construction 🚧</h1>
+        <p>We're working hard to bring you something amazing!</p>
+      </div>
+      <div class="error-tips">
+        <div class="survey-section">
+          <h3>Help Us Improve! 📝</h3>
+          <form id="survey-form" class="survey-form">
+            <div class="form-group">
+              <label for="name">Your Name:</label>
+              <input type="text" id="name" name="name" placeholder="Enter your name" />
+            </div>
+            <div class="form-group">
+              <label for="email">Your Email:</label>
+              <input type="email" id="email" name="email" placeholder="Enter your email" />
+            </div>
+            <div class="form-group">
+              <label for="mail-provider">Preferred Mail Provider:</label>
+              <select id="mail-provider" name="mail-provider">
+                <option value="gmail">Gmail</option>
+                <option value="outlook">Outlook</option>
+                <option value="yahoo">Yahoo Mail</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="feedback">Your Feedback:</label>
+              <textarea id="feedback" name="feedback" placeholder="Share your thoughts and suggestions..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Feedback</button>
+          </form>
+        </div>
+      </div>
+      <div class="game-container">
+        <div class="score">Score: <span id="score">0</span></div>
+        <div class="high-score">High Score: <span id="highScore">0</span></div>
+        <div id="game-over" class="game-over hidden">Game Over! Press Space to restart</div>
+        <div id="dino" class="dino">
+          <div class="ear"></div>
+          <div class="eye"></div>
+          <div class="nose"></div>
+          <div class="whiskers"></div>
+        </div>
+        <div id="cactus" class="cactus">
+          <div class="texture"></div>
+          <div class="shine"></div>
+        </div>
+        <div class="ground"></div>
+        <div class="cloud" style="top: 50px"></div>
+        <div class="cloud" style="top: 100px"></div>
+        <div class="cloud" style="top: 150px"></div>
+      </div>
+      <div class="game-instructions">
+        <p>While we're building, enjoy this preview version! Press SPACE to make the rabbit jump and avoid carrot!</p>
+      </div>
+    </div>
+    <script src="game.js"></script>
+  </body>
+</html>
