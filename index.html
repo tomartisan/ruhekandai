@@ -37,7 +37,7 @@
             </div>
             <div class="form-group">
               <label for="feedback">Your Feedback:</label>
-              <textarea id="feedback" name="feedback" placeholder="Share your thoughts and suggestions..."></textarea>
+              <textarea id="feedback" name="feedback" placeholder="Share your thoughts and suggestions..." maxlength="300" required></textarea>
             </div>
             <button type="submit" class="submit-btn">Send Feedback</button>
           </form>
@@ -46,7 +46,7 @@
       <div class="game-container">
         <div class="score">Score: <span id="score">0</span></div>
         <div class="high-score">High Score: <span id="highScore">0</span></div>
-        <div id="game-over" class="game-over hidden">Game Over! Press Space to restart</div>
+        <div id="game-over" class="game-over hidden">Game Over!</div>
         <div id="dino" class="dino">
           <div class="ear"></div>
           <div class="eye"></div>
@@ -58,9 +58,7 @@
           <div class="shine"></div>
         </div>
         <div class="ground"></div>
-        <div class="cloud" style="top: 50px"></div>
-        <div class="cloud" style="top: 100px"></div>
-        <div class="cloud" style="top: 150px"></div>
+        <div class="grass"></div>
       </div>
       <div class="game-instructions">
         <p>While we're building, enjoy this preview version! Press SPACE to make the rabbit jump and avoid carrot!</p>

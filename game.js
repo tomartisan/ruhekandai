@@ -9,7 +9,11 @@ let isGameOver = false;
 let isGameStarted = false;
 let score = 0;
 let highScore = localStorage.getItem('highScore') || 0;
-let gameSpeed = 3;
+let gameSpeed = 5; // Starting speed
+const maxSpeed = 15; // Maximum speed
+const speedIncreaseInterval = 1000; // Increase speed every second
+const speedIncreaseAmount = 0.5; // How much to increase speed by
+let lastSpeedIncrease = 0;
 
 // Initialize high score
 highScoreElement.textContent = highScore;
@@ -29,7 +33,7 @@ function jump() {
     setTimeout(() => {
         dino.classList.remove('jump');
         isJumping = false;
-    }, 500);
+    }, 800);
 }
 
 function updateScore() {
@@ -42,16 +46,18 @@ function updateScore() {
         scoreElement.classList.remove('score-pop');
     }, 300);
     
-    // Increase game speed every 200 points
-    if (score % 200 === 0) {
-        gameSpeed += 0.3;
-    }
-    
-    // Update high score
+    // Update high score if current score is higher
     if (score > highScore) {
         highScore = score;
         highScoreElement.textContent = highScore;
         localStorage.setItem('highScore', highScore);
+    }
+
+    // Increase speed gradually
+    const currentTime = Date.now();
+    if (currentTime - lastSpeedIncrease > speedIncreaseInterval) {
+        gameSpeed = Math.min(gameSpeed + speedIncreaseAmount, maxSpeed);
+        lastSpeedIncrease = currentTime;
     }
 }
 
@@ -67,18 +73,21 @@ function checkCollision() {
     );
 }
 
+function moveCactus() {
+    const currentLeft = parseInt(window.getComputedStyle(cactus).getPropertyValue('left'));
+    
+    if (currentLeft > -20) {
+        cactus.style.left = (currentLeft - gameSpeed) + 'px';
+    } else {
+        cactus.style.left = '100%';
+        updateScore();
+    }
+}
+
 function gameLoop() {
     if (isGameOver || !isGameStarted) return;
     
-    const cactusLeft = parseInt(window.getComputedStyle(cactus).getPropertyValue('left'));
-    
-    // Move cactus
-    if (cactusLeft <= -20) {
-        cactus.style.left = '800px';
-        updateScore();
-    } else {
-        cactus.style.left = (cactusLeft - gameSpeed) + 'px';
-    }
+    moveCactus();
     
     // Check collision
     if (checkCollision()) {
@@ -94,11 +103,14 @@ function resetGame() {
     isGameOver = false;
     isGameStarted = false;
     score = 0;
-    gameSpeed = 3;
+    gameSpeed = 5; // Reset to initial speed
+    lastSpeedIncrease = Date.now();
     scoreElement.textContent = '0';
-    cactus.style.left = '800px';
+    cactus.style.left = '100%';
     gameOverElement.classList.add('hidden');
     startMessage.classList.remove('hidden');
+    dino.style.bottom = '0';
+    isJumping = false;
 }
 
 function startGame() {
